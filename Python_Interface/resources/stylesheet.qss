@@ -4,6 +4,13 @@ QWidget {
     font-size: 14px;
 }
 
+#titleLabel {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 5px;
+    border-bottom: 1px solid #cccccc;
+}
+
 #cameraFeed {
     background-color: #e46868;
     border: 2px solid #000000;
