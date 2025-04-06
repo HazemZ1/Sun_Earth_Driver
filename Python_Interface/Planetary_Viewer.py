@@ -58,7 +58,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = PlanetWatcher()
 
-    styles_path = "stylesheet.qss"
+    styles_path = "Python_Interface/resources/stylesheet.qss"
     with open(styles_path, "r") as f:
         styles = f.read()
     app.setStyleSheet(styles)
