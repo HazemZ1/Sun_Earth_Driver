@@ -9,7 +9,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QGroupBox
 )
 from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QFontDatabase
 import sys
 
 
@@ -17,7 +17,8 @@ class PlanetWatcher(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Planet Watcher")
-        self.setStyleSheet(open("stylesheet.css").read())
+        #self.setStyleSheet(open("stylesheet.css").read())
+        self.resize(1920, 1080)
         self.init_ui()
 
     def init_ui(self):
@@ -56,6 +57,10 @@ class PlanetWatcher(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = PlanetWatcher()
-    window.resize(1920, 1080)
+
+    styles_path = "stylesheet.qss"
+    with open(styles_path, "r") as f:
+        styles = f.read()
+    app.setStyleSheet(styles)
     window.show()
     sys.exit(app.exec())
