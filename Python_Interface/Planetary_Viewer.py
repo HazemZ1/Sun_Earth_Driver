@@ -131,7 +131,6 @@ class PlanetViewer(QMainWindow):
     def month_select(self):
         init_text = "Current Selection: " + self.month_combobox.currentText()
         self.userfeedback.setText(init_text)
-        test = "hoh"
 
 
 if __name__ == "__main__":
