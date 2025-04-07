@@ -1,36 +1,93 @@
+/* Universal */
 QWidget {
-    background-color: #000000;
-    font-family: 'Segoe UI';
-    font-size: 14px;
+    background-color: qlineargradient(
+        x1:0, y1:0, x2:1, y2:1,
+        stop:0 #0b0c10, stop:0.5 #11121a, stop:1 #000000
+    );
+    font-family: "Segoe UI", sans-serif;
+    color: #ffffff;
 }
 
+/* Title */
 #titleLabel {
-    font-size: 22px;
-    font-weight: 600;
-    padding: 5px;
-    border-bottom: 1px solid #cccccc;
+    font-size: 24px;
+    font-weight: bold;
+    color: #f0e68c;
+    text-decoration: underline;
 }
 
+/* Camera Feed Box */
 #cameraFeed {
-    background-color: #e46868;
-    border: 2px solid #000000;
-    border-radius: 15px;
+    background-color: #241c94; /* Deep violet-blue */
+    border-radius: 16px;
+    color: #eaeaff;
+    font-size: 13px;
+    padding: 10px;
     min-width: 200px;
     min-height: 200px;
+    qproperty-alignment: AlignCenter;
 }
 
+/* Status Updates / Feedback */
+#statusBox, #feedbackBox {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 10px;
+    padding: 8px;
+    color: #cdd6f4;
+}
+
+/* Combo Box for Month Selection */
 #monthSelect {
-    background-color: #000000;
-    border: 1px solid #999999;
-    border-radius: 10px;
-    padding: 5px;
-    min-width: 150px;
+    background-color: #111;
+    border: 1px solid #666;
+    border-radius: 6px;
+    padding: 4px 6px;
+    color: #e0e0e0;
+    combobox-popup: 0;
 }
 
-#infoLabel {
-    background-color: #000000;
-    border: 1px solid #999999;
-    border-radius: 10px;
-    padding: 10px;
-    min-width: 150px;
+#monthSelect QAbstractItemView {
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+    selection-background-color: #334155;
+    selection-color: #e0e0e0;
 }
+
+/* Start Button */
+#startButton {
+    background-color: #0f0f0f;
+    border: 1px solid #4fd1c5;
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #ffffff;
+}
+
+#startButton:hover {
+    background-color: #1a202c;
+    border: 1px solid #63b3ed;
+}
+
+/* Tooltip or label-like feedback text */
+QLabel {
+    color: #eeeeee;
+}
+
+/* Scrollbars if needed */
+QScrollBar:vertical, QScrollBar:horizontal {
+    background: #222;
+    width: 8px;
+    border-radius: 4px;
+}
+
+QScrollBar::handle:vertical, QScrollBar::handle:horizontal {
+    background: #888;
+    border-radius: 4px;
+}
+
+/* Glow on hover (fun touch) */
+#startButton:hover, #monthSelect:hover, #cameraFeed:hover {
+    border: 1px solid #63b3ed;
+}
+
+
