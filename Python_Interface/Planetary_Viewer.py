@@ -133,8 +133,6 @@ class PlanetViewer(QMainWindow):
         self.userfeedback.setText(init_text)
 
 
-        balls
-
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = PlanetViewer()
