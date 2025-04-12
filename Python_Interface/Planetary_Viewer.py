@@ -31,16 +31,15 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont, QFontDatabase
 
 try:
-    arduino = serial.Serial(port="COM9", baudrate=115200)
+    arduino = serial.Serial(port="COM9", baudrate=115200,)
     print("Serial connection established on COM9 at 115200 baud.")
 except serial.SerialException as e:
     print(f"Failed to establish serial connection: {e}")
 
-# arduino.flush()  # Removed to avoid clearing necessary data before writing commands
-
-
+arduino.flush()
 
 class PlanetViewer(QMainWindow):
+    stop_command = ""
     def __init__(self):
         super().__init__()
 
@@ -115,25 +114,27 @@ class PlanetViewer(QMainWindow):
             month = self.month_combobox.currentText() + "\n"
             dispString ="Moving to: " + month
             self.userfeedback.setText(dispString)
-            time.sleep(0.1)
-            arduino.write(month.encode())
-            time.sleep(0.2)
+            #time.sleep(0.5)
+            arduino.write(month.encode("utf-8"))
+            #time.sleep(0.5)
             print("Motion Starting")
-        else:
-            stop_command = "Stop\n"
-            time.sleep(0.1)
             arduino.flush()
-            arduino.write(stop_command.encode())
-            time.sleep(0.2)
+        else:
+            stop_command = "stop\n"
+            #time.sleep(0.5)
+            arduino.write(stop_command.encode("utf-8"))
+            #time.sleep(0.5)
             print("Stopped Moving")
+            stop_command = ""
+            #self.startButton.setChecked(False)
+            arduino.flush()
 
 
     def month_select(self):
         init_text = "Current Selection: " + self.month_combobox.currentText()
         self.userfeedback.setText(init_text)
-        test = ""
 
-
+ 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = PlanetViewer()
@@ -143,5 +144,4 @@ if __name__ == "__main__":
     style_path = "Python_Interface/resources/stylesheet.qss"
     with open(style_path, "r") as f:
         app.setStyleSheet(f.read())
-
     app.exec()
