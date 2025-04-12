@@ -31,7 +31,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont, QFontDatabase
 
 try:
-    arduino = serial.Serial(port="COM9", baudrate=115200,)
+    arduino = serial.Serial(port="COM9", baudrate=19200)
     print("Serial connection established on COM9 at 115200 baud.")
 except serial.SerialException as e:
     print(f"Failed to establish serial connection: {e}")
@@ -115,13 +115,17 @@ class PlanetViewer(QMainWindow):
             dispString ="Moving to: " + month
             self.userfeedback.setText(dispString)
             #time.sleep(0.5)
+            arduino.flush()
+            time.sleep(0.5)
             arduino.write(month.encode("utf-8"))
             #time.sleep(0.5)
             print("Motion Starting")
-            arduino.flush()
+            
         else:
             stop_command = "stop\n"
-            #time.sleep(0.5)
+            #
+            arduino.flush()
+            time.sleep(0.5)
             arduino.write(stop_command.encode("utf-8"))
             #time.sleep(0.5)
             print("Stopped Moving")
