@@ -31,7 +31,7 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QFont, QFontDatabase
 
 try:
-    arduino = serial.Serial(port="COM9", baudrate=19200)
+    arduino = serial.Serial(port="COM9", baudrate=115200)
     print("Serial connection established on COM9 at 115200 baud.")
 except serial.SerialException as e:
     print(f"Failed to establish serial connection: {e}")
